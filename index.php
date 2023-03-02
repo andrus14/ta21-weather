@@ -9,9 +9,9 @@ $url = "https://api.openweathermap.org/data/2.5/weather?units=metric&lat={$lat}&
 
 $cache = 'cache.json';
 $now = time();
-$timeout = 20 * 1000;
+$timeout = 600;
 
-if ( !file_exists($cache) || ($now - filemtime($cache)) < $timeout ) {
+if ( !file_exists($cache) || ($now - filemtime($cache)) > $timeout ) {
     $content = file_get_contents($url);
     file_put_contents($cache, $content);
 } else {
